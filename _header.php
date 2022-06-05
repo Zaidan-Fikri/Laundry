@@ -10,7 +10,7 @@
 <head>
 	<title>Rumah Laundry | Dashboard</title>
 	<link rel="stylesheet" href="<?=url('_assets/css/style.css')?>">
-	<link rel="shortcut icon" href="_assets/img/logo/favicon.svg" type="image/x-icon">
+	<link rel="shortcut icon" href="<?=url('_assets/img/logo/favicon.svg')?>" type="image/x-icon">
 </head>
 <body>
 

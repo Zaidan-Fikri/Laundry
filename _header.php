@@ -18,7 +18,7 @@
 		<nav>
 			<div class="logo">
 				<a href="<?=url()?>">
-					<img src="_assets/img/logo/nav-logo.svg" alt="Rumah Laundry Logo">
+					<img src="<?=url('_assets/img/logo/nav-logo.svg')?>" alt="Rumah Laundry Logo">
 				</a>
 			</div>
 			<ul class="nav-menu">
@@ -32,21 +32,8 @@
 			</ul>
 		</nav>
 		<div id="nav-mini">
-			<?php 
-				if ($data_account[0]['level'] == 'admin') {
-					?>
-					<a href="karyawan/karyawan.php" class="link-nav">Manage Karyawan</a>
-				<?php
-				}
-				?>
-			<?php
-				if ($data_account[0]['level'] == 'admin' || $data_account[0]['level'] == 'karyawan') {
-													
-			?>
+			<a href="karyawan/karyawan.php" class="link-nav">Manage Karyawan</a>
 			<a href="riwayat_transaksi/riwayat.php" class="link-nav">Riwayat Transaksi</a>
-			<a href="paket/paket.php" class="link-nav">Daftar Paket</a>
-			<?php 
-				}
-			?>			
+			<a href="paket/paket.php" class="link-nav">Daftar Paket</a>			
 		</div>
 	</header>

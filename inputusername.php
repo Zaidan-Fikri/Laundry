@@ -19,37 +19,12 @@
 	<?php 
 		if (isset($_POST['login'])) {
 			$username = $_POST['username'];
-			$password = $_POST['password'];
+			// $password = $_POST['password'];
 
 			$data = mysqli_query($koneksi,"SELECT * FROM master WHERE username = '$username'");
 
 			if (mysqli_num_rows($data) > 0) {
-				$hasil = mysqli_fetch_assoc($data);
-
-				if (password_verify($password, $hasil['password'])) {
-					$_SESSION['master'] = $username;
-					$_SESSION['login'] = true; ?>
-						<script>window.location="http://localhost/Laundry/";</script>
-				<?php 
-				}else {?>
-
-					<div class="overlay">
-						<div class="boxSalah">
-							<a href="<?=url('login.php');?>" class="close">&times;</a>
-							<p>Password Salah!</p>
-						</div>
-					</div>
-				
-				<?php 
-				}
-			}else{?>
-				<div class="overlay">
-					<div class="boxSalah">
-						<a href="<?=url('login.php');?>" class="close">&times;</a>
-						<p>Username & password salah!</p>
-					</div>
-				</div>
-			<?php 
+				echo '<script>window.location="http://localhost/Laundry/forgotpassword.php?username='.$username.'"</script>';
 			}
 		}
 	?>
@@ -73,19 +48,7 @@
 						</div>
 
 						<div class="box__left-form-group">
-							<div class="input-form">
-								<input type="password" name="password" placeholder="Password" required autocomplete="off">
-							</div>
-						</div>
-
-						<div class="box__left-form-group">
-							<div>
-								<a href="inputusername.php">Forgot Password</a>
-							</div>
-						</div>
-
-						<div class="box__left-form-group">
-							<button type="submit" name="login" class="btn-login mt-1">Login</button>
+							<button type="submit" name="login" class="btn-login mt-1">Submit</button>
 						</div>
 					</form>
 				</div>

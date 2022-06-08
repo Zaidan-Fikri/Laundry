@@ -1,3 +1,32 @@
+<?php	 
+	require_once('_functions.php'); 
+	$id_user = $_GET['username'];
+	$update = query("SELECT * FROM master WHERE username='$id_user'")[0];
+?>
+
+<?php if (isset($_POST['update'])) : ?>
+	<?php if (update_pass($_POST) > 0) :?>
+		<!-- Statement 1 -->
+		<div class="alert">
+			<div class="box">
+				<img src="<?=url('_assets/img/berhasil.png')?>" height="68" alt="alert sukses">
+				<p>Data Berhasil Di Ubah</p>
+				<button onclick="window.location='http://localhost/Laundry/login.php'" class="btn-alert">Ok</button>
+			</div>
+		</div>
+
+		<?php else : ?>
+			<!-- Statement 2 -->
+			<div class="alert">
+				<div class="box">
+				<img src="<?=url('_assets/img/gagal.png')?>" height="68" alt="alert gagal">
+					<p>Data Gagal Di Ubah</p>
+					<button onclick="window.location='http://localhost/Laundry/login.php'" class="btn-alert">Ok</button>
+				</div>
+			</div>
+	<?php endif ?>
+<?php endif ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,15 +48,17 @@
 				</div>
 
 				<div class="box__left-form">
-					<form action="_kirimpassword.php" method="post">
+					<form action="" method="post">
+						<input type="hidden" name="id_user" value="<?= $update['id_user'] ?>">
+						<input type="hidden" name="username" value="<?= $update['username'] ?>">
 						<div class="box__left-form-group">
 							<div class="input-form">
-								<input type="text" name="username" placeholder="Username" required autocomplete="off">
+								<input type="password" name="password" placeholder="New Password" value="<?= $update['password'] ?>">
 							</div>
 						</div>
 
 						<div class="box__left-form-group">
-							<button type="submit" name="login" class="btn-login mt-1">Submit</button>
+							<button type="submit" name="update" class="btn-login mt-1" >Submit</button>
 						</div>
 					</form>
 				</div>

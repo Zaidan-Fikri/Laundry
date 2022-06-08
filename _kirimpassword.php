@@ -42,10 +42,9 @@ $newPasswordEnkrip = md5($pengacak . md5($newPassword) . $pengacak);
 
 // mencari alamat email si user
 $query = "SELECT * FROM master WHERE username = '$username'";
-$hasil = mysqli_query($query);
+$hasil = mysqli_query($koneksi, $query);
 $data  = mysqli_fetch_array($hasil);
 $alamatEmail = $data['email'];
-
 // title atau subject email
 $title  = "New Password";
 
@@ -54,7 +53,10 @@ $pesan  = "Username Anda : ".$username.". \nPassword Anda yang baru adalah ".$ne
 
 // header email berisi alamat pengirim
 $header = "From: admin@situsku.com";
-
+ini_set("SMTP","smtp.gmail.com");
+ini_set("smtp_port","587");
+ini_set("sendmail_from","zaidanfikri11@gmail.com");
+ini_set("sendmail_path", "C:\wamp\bin\sendmail.exe -t");
 // mengirim email
 $kirimEmail = mail($alamatEmail, $title, $pesan, $header);
 

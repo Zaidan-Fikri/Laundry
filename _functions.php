@@ -80,6 +80,20 @@ function update_kary($up_kary){
 	return mysqli_affected_rows($koneksi);
 }
 
+function update_pass($up_kary){
+	global $koneksi;
+
+	$id_user 	= $up_kary['id_user'];
+	$username 	= htmlspecialchars($up_kary['username']);
+	$password	= htmlspecialchars($up_kary['password']);
+	$password_fix 	= password_hash($password, PASSWORD_DEFAULT);
+		
+	$up_query = "UPDATE `master` SET `password` = '$password_fix' WHERE `master`.`id_user` = $id_user;";
+
+	mysqli_query($koneksi,$up_query);
+	return mysqli_affected_rows($koneksi);
+}
+
 function del_kary($id_kary){
 	global $koneksi;
 	mysqli_query($koneksi,"DELETE FROM master WHERE id_user = '$id_kary'");
